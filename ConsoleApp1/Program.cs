@@ -33,7 +33,12 @@ namespace Calculate
         {
             begin:
                 Console.WriteLine("Выберите действие" + "\n 1) Начать вычисления" + "\n 2) Выйти");
-                int p = int.Parse(Console.ReadLine());
+                int p;
+                while (!int.TryParse(Console.ReadLine(), out p))
+                    {
+                         Console.WriteLine("Ошибка ввода, введите число");
+                    }
+
 
             string text = null;
             int n = 0;
