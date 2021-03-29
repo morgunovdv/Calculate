@@ -24,10 +24,6 @@ namespace Calculate
 
         static int division(int a, int b)
         {
-            if (b == 0)
-            {
-                Console.WriteLine("Делить на 0 нельзя");
-            }
             return a / b;
         }
 
@@ -41,6 +37,9 @@ namespace Calculate
 
             string text = null;
             int n = 0;
+            int a;
+            int b;
+
 
             while (p == 1)
             {
@@ -49,50 +48,59 @@ namespace Calculate
 
                 Console.WriteLine("Выберите действие" + "\n 1)сложение" + "\n 2)вычитание" + "\n 3)умножение" + "\n 4)деление" + "\n 5)выход");
                 int c = int.Parse(Console.ReadLine());
-
-                if (c != 5)
+                Console.WriteLine("Введите первое число");
+                while(!int.TryParse(Console.ReadLine(), out a))
                 {
-                    Console.WriteLine("Введите первое число");
-                    int a = int.Parse(Console.ReadLine());
-
-                    Console.WriteLine("Введите второе число");
-                    int b = int.Parse(Console.ReadLine());
-
-                    Console.WriteLine("=============================");
-
-                    
-
-                    if (c == 1)
-                    {
-                        text = "сложения";
-                        result = sum(a, b);
-                    }
-
-                    else if (c == 2)
-                    {
-                        text = "вычетания";
-                        result = subtraction(a, b);
-                    }
-
-                    else if (c == 3)
-                    {
-                        text = "умножения";
-                        result = multiplication(a, b);
-                    }
-
-                    else if (c == 4)
-                    {
-                        text = "деления";
-                        result = division(a, b);
-                    }
-                    Console.WriteLine("=============================");
+                    Console.WriteLine("Ошибка ввода, введите число");
+                }
+                Console.WriteLine("Введите второе число");
+                while (!int.TryParse(Console.ReadLine(), out b))
+                {
+                    Console.WriteLine("Ошибка ввода, введите число");
                 }
 
-                else
-                {
-                    goto begin;
-                }
-                Console.WriteLine($"Результат {text} равен: " + result);
+                switch (c)
+                    {
+                        case 1:
+                            result = sum(a, b);
+                            text = ($"Результат сложения равен: {result}");
+                            break;
+
+                        case 2:           
+                            result = subtraction(a, b);
+                            text = ($"Результат вычетания равен: {result}");
+                            break;
+
+                        case 3:            
+                            result = multiplication(a, b);
+                            text = ($"Результат умножения равен: {result}");
+                            break;
+
+                        case 4:
+                            if (b != 0)
+                            {
+                                result = division(a, b);
+                                text = ($"Результат деления равен: {result}");
+                            }
+
+                            else
+                            {
+                                text = "Делить на 0 нельзя";
+                            }                     
+                            break;
+
+                        case 5:
+                            goto begin;
+
+                        default:
+                            break;
+
+                    }
+                
+
+                Console.WriteLine("=============================");
+
+                Console.WriteLine(text);
                 Console.WriteLine("=============================");
                 Console.WriteLine("Количество операций вычисления: " + n);
                 Console.WriteLine("=============================");
