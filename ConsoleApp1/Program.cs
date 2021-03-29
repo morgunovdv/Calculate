@@ -93,6 +93,7 @@ namespace Calculate
                             goto begin;
 
                         default:
+                            Console.WriteLine("Действие не выбрано");
                             break;
 
                     }
