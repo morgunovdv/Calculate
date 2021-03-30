@@ -40,7 +40,7 @@ namespace Calculate
 
         static void Main(string[] args)
         {
-
+            int result;
             string text = null;
             int n = 0;
             int a;
@@ -49,15 +49,12 @@ namespace Calculate
             int p;
 
             Console.WriteLine("Выберите действие" + "\n 1) Начать вычисления" + "\n 2) Выйти");
-
             p = CheckInput();
 
 
             while (p == 1)
             {
-                int result = 0;
                 n++;
-
                 Console.WriteLine("Выберите действие" + "\n 1)сложение" + "\n 2)вычитание" + "\n 3)умножение" + "\n 4)деление" + "\n 5)выход");
                 c = CheckInput();
                 Console.WriteLine("Введите первое число");
@@ -100,15 +97,11 @@ namespace Calculate
                             p = CheckInput();
                             break;
 
-                    default:
+                        default:
                             Console.WriteLine("Действие не выбрано");
                             break;
-
                     }
-                
-
                 Console.WriteLine("=============================");
-
                 Console.WriteLine(text);
                 Console.WriteLine("=============================");
                 Console.WriteLine("Количество операций вычисления: " + n);
