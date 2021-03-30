@@ -7,43 +7,50 @@ namespace Calculate
         
 
 
-        static int sum(int a, int b)
+        static int Sum(int a, int b)
         {
             return a + b;
         }
 
-        static int subtraction(int a, int b)
+        static int Subtraction(int a, int b)
         {
             return a - b;
         }
 
-        static int multiplication(int a, int b)
+        static int Multiplication(int a, int b)
         {
             return a * b;
         }
 
-        static int division(int a, int b)
+        static int Division(int a, int b)
         {
             return a / b;
         }
 
+        static int CheckInput()
+        {
+            int x;
+            while (!int.TryParse(Console.ReadLine(), out x))
+            {
+                Console.WriteLine("Ошибка ввода, введите число");
+            }
+            return x;
+        }
 
 
         static void Main(string[] args)
         {
-            begin:
-                Console.WriteLine("Выберите действие" + "\n 1) Начать вычисления" + "\n 2) Выйти");
-                int p;
-                while (!int.TryParse(Console.ReadLine(), out p))
-                    {
-                         Console.WriteLine("Ошибка ввода, введите число");
-                    }
-
 
             string text = null;
             int n = 0;
             int a;
             int b;
+            int c;
+            int p;
+
+            Console.WriteLine("Выберите действие" + "\n 1) Начать вычисления" + "\n 2) Выйти");
+
+            p = CheckInput();
 
 
             while (p == 1)
@@ -52,39 +59,33 @@ namespace Calculate
                 n++;
 
                 Console.WriteLine("Выберите действие" + "\n 1)сложение" + "\n 2)вычитание" + "\n 3)умножение" + "\n 4)деление" + "\n 5)выход");
-                int c = int.Parse(Console.ReadLine());
+                c = CheckInput();
                 Console.WriteLine("Введите первое число");
-                while(!int.TryParse(Console.ReadLine(), out a))
-                {
-                    Console.WriteLine("Ошибка ввода, введите число");
-                }
+                a = CheckInput();
                 Console.WriteLine("Введите второе число");
-                while (!int.TryParse(Console.ReadLine(), out b))
-                {
-                    Console.WriteLine("Ошибка ввода, введите число");
-                }
+                b = CheckInput();
 
                 switch (c)
                     {
                         case 1:
-                            result = sum(a, b);
+                            result = Sum(a, b);
                             text = ($"Результат сложения равен: {result}");
                             break;
 
                         case 2:           
-                            result = subtraction(a, b);
+                            result = Subtraction(a, b);
                             text = ($"Результат вычетания равен: {result}");
                             break;
 
                         case 3:            
-                            result = multiplication(a, b);
+                            result = Multiplication(a, b);
                             text = ($"Результат умножения равен: {result}");
                             break;
 
                         case 4:
                             if (b != 0)
                             {
-                                result = division(a, b);
+                                result = Division(a, b);
                                 text = ($"Результат деления равен: {result}");
                             }
 
@@ -95,9 +96,11 @@ namespace Calculate
                             break;
 
                         case 5:
-                            goto begin;
+                            Console.WriteLine("Выберите действие" + "\n 1) Начать вычисления" + "\n 2) Выйти");
+                            p = CheckInput();
+                            break;
 
-                        default:
+                    default:
                             Console.WriteLine("Действие не выбрано");
                             break;
 
